@@ -29,11 +29,31 @@ public class RestCustomerController {
         return customer;
     }
 
+    //save or update
+    //Hibernate method saveOrUpdate checks customerId, if it equals 0 then hibernate create new Customer
+    //either way he take customerId and update instance
     @PostMapping("/customers")
     public Customer addCustomer(@RequestBody Customer customer) {
-
+        //customerId = hibernate create new Customer
         customer.setId(0);
         customerService.saveCustomer(customer);
         return customer;
+    }
+
+    @PutMapping("/customers")
+    public Customer updateCustomer(@RequestBody Customer customer) {
+
+        customerService.saveCustomer(customer);
+        return customer;
+    }
+
+    @DeleteMapping("/customers")
+    public String deleteCustomer(@PathVariable int customerId) {
+
+        Customer tempCustomer = customerService.getCustomer(customerId);
+        if(tempCustomer == null) throw new CustomerNotFoundException("Customer not found -" + customerId);
+
+        customerService.deleteCustomer(customerId);
+        return "Deleted customer customerId - " + customerId;
     }
 }
