@@ -47,7 +47,7 @@ public class RestCustomerController {
         return customer;
     }
 
-    @DeleteMapping("/customers")
+    @DeleteMapping("/customers/{customerId}")
     public String deleteCustomer(@PathVariable int customerId) {
 
         Customer tempCustomer = customerService.getCustomer(customerId);

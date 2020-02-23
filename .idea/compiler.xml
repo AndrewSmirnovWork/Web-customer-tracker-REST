@@ -9,5 +9,8 @@
         <module name="Web-customer-tracker-REST" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Web-customer-tracker-REST" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
